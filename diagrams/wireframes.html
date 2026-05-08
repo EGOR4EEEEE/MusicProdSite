@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Wireframes — Music Prod Studio</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #e0e0e0; padding: 36px; }
+
+    .page-label { font-size: 13px; font-weight: 700; color: #222; margin-bottom: 4px; }
+    .page-sub   { font-size: 10px; color: #666; margin-bottom: 32px; }
+
+    .grid { display: flex; flex-wrap: wrap; gap: 28px; }
+
+    /* ── Экран ── */
+    .screen { width: 320px; border-radius: 8px; overflow: hidden; border: 1.5px solid #bbb; background: #fff; }
+    .chrome { background: #333; padding: 6px 10px; display: flex; align-items: center; gap: 4px; }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: #666; }
+    .urlbar { flex: 1; height: 14px; background: #555; border-radius: 3px; margin-left: 6px; }
+
+    /* Header */
+    .wf-header {
+      background: #fff; border-bottom: 1px solid #ccc;
+      padding: 8px 14px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .wf-logo { display: flex; align-items: center; gap: 5px; }
+    .wf-logo-icon { width: 20px; height: 20px; background: #333; border-radius: 4px; }
+    .wf-logo-text { width: 60px; height: 8px; background: #333; border-radius: 2px; }
+    .wf-nav { display: flex; gap: 8px; }
+    .wf-nav-item { width: 30px; height: 7px; background: #ccc; border-radius: 2px; }
+    .wf-nav-item.active { background: #333; }
+    .wf-btn-sm { width: 60px; height: 20px; background: #333; border-radius: 4px; }
+
+    /* Секция / контейнер */
+    .wf-section { padding: 16px 14px; border-bottom: 1px solid #eee; }
+    .wf-section.dark { background: #f0f0f0; }
+    .wf-section.darker { background: #e8e8e8; }
+
+    /* Типографика-заглушки */
+    .wf-badge { display: inline-block; width: 80px; height: 8px; background: #ccc; border-radius: 8px; margin-bottom: 8px; }
+    .wf-h1 { width: 85%; height: 18px; background: #222; border-radius: 3px; margin-bottom: 6px; }
+    .wf-h1.sm { height: 14px; }
+    .wf-h2 { width: 60%; height: 13px; background: #333; border-radius: 3px; margin-bottom: 6px; }
+    .wf-h3 { width: 50%; height: 10px; background: #444; border-radius: 2px; margin-bottom: 4px; }
+    .wf-p  { height: 7px; background: #ddd; border-radius: 2px; margin-bottom: 4px; }
+    .wf-p.short { width: 55%; }
+    .wf-p.med   { width: 75%; }
+    .wf-p.full  { width: 100%; }
+
+    /* Кнопки */
+    .wf-btn { display: inline-block; height: 22px; background: #333; border-radius: 5px; }
+    .wf-btn.w80 { width: 80px; }
+    .wf-btn.w100 { width: 100px; }
+    .wf-btn.outline { background: #fff; border: 1.5px solid #555; }
+    .wf-btn-row { display: flex; gap: 8px; margin-top: 10px; }
+
+    /* Статистики */
+    .wf-stats { display: flex; gap: 10px; margin-top: 12px; }
+    .wf-stat { flex: 1; }
+    .wf-stat-num { height: 16px; background: #333; border-radius: 2px; margin-bottom: 3px; width: 40px; }
+    .wf-stat-lbl { height: 6px; background: #ddd; border-radius: 2px; width: 60px; }
+
+    /* Сетки карточек */
+    .wf-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .wf-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 7px; }
+    .wf-grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 6px; }
+
+    /* Карточка */
+    .wf-card { background: #f5f5f5; border: 1px solid #ccc; border-radius: 5px; padding: 8px; }
+    .wf-card.featured { background: #e8e8e8; border-color: #999; }
+
+    .wf-icon-box { width: 22px; height: 22px; background: #ccc; border-radius: 4px; margin-bottom: 5px; }
+    .wf-avatar { width: 36px; height: 36px; border-radius: 50%; background: #ccc; margin: 0 auto 5px; }
+    .wf-avatar.sm { width: 26px; height: 26px; }
+    .wf-img-rect { width: 100%; height: 60px; background: #ddd; border-radius: 4px; margin-bottom: 6px; }
+
+    /* Тариф */
+    .wf-price { height: 18px; background: #333; border-radius: 2px; width: 55px; margin: 6px 0; }
+    .wf-feature-row { display: flex; align-items: center; gap: 4px; margin-bottom: 3px; }
+    .wf-check { width: 7px; height: 7px; background: #555; border-radius: 50%; flex-shrink: 0; }
+
+    /* Инпуты формы */
+    .wf-input { height: 20px; background: #f5f5f5; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 6px; }
+    .wf-input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    .wf-label { height: 7px; background: #ccc; border-radius: 2px; width: 50px; margin-bottom: 3px; }
+
+    /* Слайдер */
+    .wf-slider { display: flex; gap: 7px; overflow: hidden; }
+    .wf-slide { min-width: 80px; height: 80px; background: #ddd; border-radius: 5px; flex-shrink: 0; }
+
+    /* Контакты */
+    .wf-contact-item { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
+    .wf-ci-icon { width: 18px; height: 18px; background: #ccc; border-radius: 50%; flex-shrink: 0; }
+
+    /* Отзывы */
+    .wf-stars { display: flex; gap: 2px; margin-bottom: 4px; }
+    .wf-star { width: 8px; height: 8px; background: #aaa; border-radius: 1px; }
+
+    /* Модалка */
+    .wf-modal-overlay { background: rgba(0,0,0,.3); padding: 20px 14px; }
+    .wf-modal { background: #fff; border: 1.5px solid #bbb; border-radius: 7px; padding: 12px; }
+    .wf-modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .wf-close { width: 14px; height: 14px; background: #ccc; border-radius: 50%; }
+
+    /* Подпись */
+    .screen-label { font-size: 9px; font-weight: 600; color: #444; text-align: center; padding: 6px; background: #eee; border-top: 1px solid #ddd; }
+
+    /* Карусель точки */
+    .wf-dots { display: flex; gap: 4px; justify-content: center; margin-top: 6px; }
+    .wf-dot-item { width: 6px; height: 6px; border-radius: 50%; background: #ccc; }
+    .wf-dot-item.active { background: #555; }
+
+    /* Футер */
+    .wf-footer { background: #f0f0f0; border-top: 1px solid #ddd; padding: 10px 14px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+    .wf-footer-col .wf-p { margin-bottom: 3px; }
+
+    /* Соцкнопки */
+    .wf-social-row { display: flex; gap: 5px; margin-top: 6px; }
+    .wf-social-btn { width: 22px; height: 22px; background: #ddd; border-radius: 5px; }
+  </style>
+</head>
+<body>
+
+  <div class="page-label">Music Prod Studio — Wireframes (B&W)</div>
+  <p class="page-sub">Чёрно-белые вайрфреймы 1:1 с реальным сайтом · тёмная тема · Vanilla HTML/CSS</p>
+
+  <div class="grid">
+
+    <!-- ══ 1. ГЛАВНАЯ (Hero) ══ -->
+    <div class="screen">
+      <div class="chrome"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="urlbar"></div></div>
+      <!-- Header -->
+      <div class="wf-header">
+        <div class="wf-logo"><div class="wf-logo-icon"></div><div class="wf-logo-text"></div></div>
+        <div class="wf-nav">
+          <div class="wf-nav-item active"></div><div class="wf-nav-item"></div>
+          <div class="wf-nav-item"></div><div class="wf-nav-item"></div><div class="wf-nav-item"></div>
+        </div>
+        <div class="wf-btn-sm"></div>
+      </div>
+      <!-- Hero -->
+      <div class="wf-section darker" style="padding:22px 14px 16px;">
+        <div class="wf-badge"></div>
+        <div class="wf-h1"></div>
+        <div class="wf-h1" style="width:70%;"></div>
+        <div class="wf-p med" style="margin-top:6px;"></div>
+        <div class="wf-p short"></div>
+        <div class="wf-btn-row">
+          <div class="wf-btn w100"></div>
+          <div class="wf-btn w80 outline"></div>
+        </div>
+        <div class="wf-stats">
+          <div class="wf-stat"><div class="wf-stat-num"></div><div class="wf-stat-lbl"></div></div>
+          <div class="wf-stat"><div class="wf-stat-num"></div><div class="wf-stat-lbl"></div></div>
+          <div class="wf-stat"><div class="wf-stat-num"></div><div class="wf-stat-lbl"></div></div>
+        </div>
+      </div>
+      <!-- Why us -->
+      <div class="wf-section">
+        <div class="wf-h3"></div>
+        <div class="wf-grid-2" style="margin-top:8px;">
+          <div class="wf-card"><div class="wf-icon-box"></div><div class="wf-p full"></div><div class="wf-p med"></div></div>
+          <div class="wf-card"><div class="wf-icon-box"></div><div class="wf-p full"></div><div class="wf-p med"></div></div>
+          <div class="wf-card"><div class="wf-icon-box"></div><div class="wf-p full"></div><div class="wf-p med"></div></div>
+          <div class="wf-card"><div class="wf-icon-box"></div><div class="wf-p full"></div><div class="wf-p med"></div></div>
+        </div>
+      </div>
+      <!-- Works slider -->
+      <div class="wf-section dark">
+        <div class="wf-h3"></div>
+        <div class="wf-slider" style="margin-top:8px;">
+          <div class="wf-slide"></div><div class="wf-slide"></div><div class="wf-slide"></div>
+        </div>
+        <div class="wf-dots">
+          <div class="wf-dot-item active"></div><div class="wf-dot-item"></div><div class="wf-dot-item"></div>
+        </div>
+      </div>
+      <!-- Reviews preview -->
+      <div class="wf-section">
+        <div class="wf-h3"></div>
+        <div class="wf-grid-3" style="margin-top:8px;">
+          <div class="wf-card"><div class="wf-stars"><div class="wf-star"></div><div class="wf-star"></div><div class="wf-star"></div><div class="wf-star"></div><div class="wf-star"></div></div><div class="wf-p full"></div><div class="wf-p med"></div></div>
+          <div class="wf-card"><div class="wf-stars"><div class="wf-star"></div><div class="wf-star"></div><div class="wf-star"></div><div class="wf-star"></div><div class="wf-star"></div></div><div class="wf-p full"></div><div class="wf-p med"></div></div>
+          <div class="wf-card"><div class="wf-stars"><div class="wf-star"></div><div class="wf-star"></div><div class="wf-star"></div><div class="wf-star"></div><div class="wf-star"></div></div><div class="wf-p full"></div><div class="wf-p med"></div></div>
+        </div>
+      </div>
+      <!-- Footer -->
+      <div class="wf-footer">
+        <div class="wf-footer-col"><div class="wf-h3" style="margin-bottom:5px;"></div><div class="wf-p full"></div><div class="wf-p med"></div></div>
+        <div class="wf-footer-col"><div class="wf-p full"></div><div class="wf-p full"></div><div class="wf-p med"></div></div>
+        <div class="wf-footer-col"><div class="wf-p full"></div><div class="wf-p full"></div><div class="wf-p med"></div></div>
+      </div>
+      <div class="screen-label">1. Главная страница (Home)</div>
+    </div>
+
+    <!-- ══ 2. ТАРИФЫ ══ -->
+    <div class="screen">
+      <div class="chrome"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="urlbar"></div></div>
+      <div class="wf-header">
+        <div class="wf-logo"><div class="wf-logo-icon"></div><div class="wf-logo-text"></div></div>
+        <div class="wf-nav">
+          <div class="wf-nav-item"></div><div class="wf-nav-item active"></div>
+          <div class="wf-nav-item"></div><div class="wf-nav-item"></div><div class="wf-nav-item"></div>
+        </div>
+        <div class="wf-btn-sm"></div>
+      </div>
+      <div class="wf-section darker" style="padding:18px 14px;">
+        <div class="wf-badge" style="margin:0 auto 8px; display:block;"></div>
+        <div class="wf-h1 sm" style="width:60%; margin:0 auto 6px;"></div>
+        <div class="wf-p med" style="margin:0 auto; width:70%;"></div>
+      </div>
+      <div class="wf-section">
+        <!-- 4 тарифных карточки: 2+2 -->
+        <div class="wf-grid-2">
+          <div class="wf-card">
+            <div class="wf-h3"></div>
+            <div class="wf-price"></div>
+            <div class="wf-feature-row"><div class="wf-check"></div><div class="wf-p med" style="margin:0;"></div></div>
+            <div class="wf-feature-row"><div class="wf-check"></div><div class="wf-p short" style="margin:0;"></div></div>
+            <div class="wf-feature-row"><div class="wf-check"></div><div class="wf-p med" style="margin:0;"></div></div>
+            <div class="wf-btn w80" style="margin-top:8px; width:100%;"></div>
+          </div>
+          <div class="wf-card">
+            <div class="wf-h3"></div>
+            <div class="wf-price"></div>
+            <div class="wf-feature-row"><div class="wf-check"></div><div class="wf-p med" style="margin:0;"></div></div>
+            <div class="wf-feature-row"><div class="wf-check"></div><div class="wf-p short" style="margin:0;"></div></div>
+            <div class="wf-feature-row"><div class="wf-check"></div><div class="wf-p med" style="margin:0;"></div></div>
+            <div class="wf-btn w80" style="margin-top:8px; width:100%;"></div>
+          </div>
+          <div class="wf-card featured" style="grid-column: 1/-1;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+              <div style="flex:1;">
+                <div class="wf-h3"></div>
+                <div class="wf-price"></div>
+              </div>
+              <div class="wf-badge" style="margin:0; width:50px; height:14px;"></div>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:4px; margin:4px 0;">
+              <div class="wf-feature-row"><div class="wf-check"></div><div class="wf-p short" style="margin:0;"></div></div>
+              <div class="wf-feature-row"><div class="wf-check"></div><div class="wf-p short" style="margin:0;"></div></div>
+              <div class="wf-feature-row"><div class="wf-check"></div><div class="wf-p med" style="margin:0;"></div></div>
+              <div class="wf-feature-row"><div class="wf-check"></div><div class="wf-p short" style="margin:0;"></div></div>
+            </div>
+            <div class="wf-btn" style="width:100%; margin-top:6px;"></div>
+          </div>
+          <div class="wf-card">
+            <div class="wf-h3"></div>
+            <div class="wf-price"></div>
+            <div class="wf-feature-row"><div class="wf-check"></div><div class="wf-p med" style="margin:0;"></div></div>
+            <div class="wf-feature-row"><div class="wf-check"></div><div class="wf-p short" style="margin:0;"></div></div>
+            <div class="wf-btn w80" style="margin-top:8px; width:100%;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="wf-footer">
+        <div class="wf-footer-col"><div class="wf-p full"></div><div class="wf-p med"></div></div>
+        <div class="wf-footer-col"><div class="wf-p full"></div><div class="wf-p full"></div></div>
+        <div class="wf-footer-col"><div class="wf-p full"></div><div class="wf-p med"></div></div>
+      </div>
+      <div class="screen-label">2. Тарифы (Tariffs)</div>
+    </div>
+
+    <!-- ══ 3. О НАС ══ -->
+    <div class="screen">
+      <div class="chrome"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="urlbar"></div></div>
+      <div class="wf-header">
+        <div class="wf-logo"><div class="wf-logo-icon"></div><div class="wf-logo-text"></div></div>
+        <div class="wf-nav">
+          <div class="wf-nav-item"></div><div class="wf-nav-item"></div>
+          <div class="wf-nav-item active"></div><div class="wf-nav-item"></div><div class="wf-nav-item"></div>
+        </div>
+        <div class="wf-btn-sm"></div>
+      </div>
+      <!-- Hero о нас -->
+      <div class="wf-section darker" style="display:grid; grid-template-columns:1fr 1fr; gap:10px; padding:16px 14px;">
+        <div>
+          <div class="wf-badge"></div>
+          <div class="wf-h1 sm"></div>
+          <div class="wf-p full"></div>
+          <div class="wf-p med"></div>
+          <div class="wf-p full"></div>
+        </div>
+        <div class="wf-img-rect" style="height:80px; margin:0;"></div>
+      </div>
+      <!-- Оборудование -->
+      <div class="wf-section">
+        <div class="wf-h3"></div>
+        <div class="wf-grid-4" style="margin-top:8px;">
+          <div class="wf-card" style="padding:6px; text-align:center;"><div class="wf-icon-box" style="margin:0 auto 4px;"></div><div class="wf-p full"></div></div>
+          <div class="wf-card" style="padding:6px; text-align:center;"><div class="wf-icon-box" style="margin:0 auto 4px;"></div><div class="wf-p full"></div></div>
+          <div class="wf-card" style="padding:6px; text-align:center;"><div class="wf-icon-box" style="margin:0 auto 4px;"></div><div class="wf-p full"></div></div>
+          <div class="wf-card" style="padding:6px; text-align:center;"><div class="wf-icon-box" style="margin:0 auto 4px;"></div><div class="wf-p full"></div></div>
+          <div class="wf-card" style="padding:6px; text-align:center;"><div class="wf-icon-box" style="margin:0 auto 4px;"></div><div class="wf-p full"></div></div>
+          <div class="wf-card" style="padding:6px; text-align:center;"><div class="wf-icon-box" style="margin:0 auto 4px;"></div><div class="wf-p full"></div></div>
+          <div class="wf-card" style="padding:6px; text-align:center;"><div class="wf-icon-box" style="margin:0 auto 4px;"></div><div class="wf-p full"></div></div>
+          <div class="wf-card" style="padding:6px; text-align:center;"><div class="wf-icon-box" style="margin:0 auto 4px;"></div><div class="wf-p full"></div></div>
+        </div>
+      </div>
+      <!-- Режиссёры -->
+      <div class="wf-section dark">
+        <div class="wf-h3"></div>
+        <div class="wf-grid-2" style="margin-top:8px;">
+          <div class="wf-card" style="text-align:center;">
+            <div class="wf-avatar"></div>
+            <div class="wf-p full"></div><div class="wf-p med"></div><div class="wf-p short"></div>
+          </div>
+          <div class="wf-card" style="text-align:center;">
+            <div class="wf-avatar"></div>
+            <div class="wf-p full"></div><div class="wf-p med"></div><div class="wf-p short"></div>
+          </div>
+          <div class="wf-card" style="text-align:center;">
+            <div class="wf-avatar"></div>
+            <div class="wf-p full"></div><div class="wf-p med"></div><div class="wf-p short"></div>
+          </div>
+          <div class="wf-card" style="text-align:center;">
+            <div class="wf-avatar"></div>
+            <div class="wf-p full"></div><div class="wf-p med"></div><div class="wf-p short"></div>
+          </div>
+        </div>
+      </div>
+      <div class="wf-footer">
+        <div class="wf-footer-col"><div class="wf-p full"></div><div class="wf-p med"></div></div>
+        <div class="wf-footer-col"><div class="wf-p full"></div><div class="wf-p full"></div></div>
+        <div class="wf-footer-col"><div class="wf-p full"></div><div class="wf-p med"></div></div>
+      </div>
+      <div class="screen-label">3. О нас (About)</div>
+    </div>
+
+    <!-- ══ 4. КОНТАКТЫ ══ -->
+    <div class="screen">
+      <div class="chrome"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="urlbar"></div></div>
+      <div class="wf-header">
+        <div class="wf-logo"><div class="wf-logo-icon"></div><div class="wf-logo-text"></div></div>
+        <div class="wf-nav">
+          <div class="wf-nav-item"></div><div class="wf-nav-item"></div>
+          <div class="wf-nav-item"></div><div class="wf-nav-item active"></div><div class="wf-nav-item"></div>
+        </div>
+        <div class="wf-btn-sm"></div>
+      </div>
+      <div class="wf-section darker" style="padding:18px 14px 12px;">
+        <div class="wf-badge" style="margin:0 auto 8px; display:block;"></div>
+        <div class="wf-h1 sm" style="width:50%; margin:0 auto 6px;"></div>
+      </div>
+      <div class="wf-section" style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+        <div>
+          <div class="wf-contact-item"><div class="wf-ci-icon"></div><div><div class="wf-p med" style="margin:0 0 2px;"></div><div class="wf-p short" style="margin:0;"></div></div></div>
+          <div class="wf-contact-item"><div class="wf-ci-icon"></div><div><div class="wf-p med" style="margin:0 0 2px;"></div><div class="wf-p short" style="margin:0;"></div></div></div>
+          <div class="wf-contact-item"><div class="wf-ci-icon"></div><div><div class="wf-p med" style="margin:0 0 2px;"></div><div class="wf-p short" style="margin:0;"></div></div></div>
+          <div class="wf-contact-item"><div class="wf-ci-icon"></div><div><div class="wf-p med" style="margin:0 0 2px;"></div><div class="wf-p short" style="margin:0;"></div></div></div>
+          <div class="wf-social-row">
+            <div class="wf-social-btn"></div><div class="wf-social-btn"></div>
+            <div class="wf-social-btn"></div><div class="wf-social-btn"></div>
+          </div>
+        </div>
+        <div class="wf-img-rect" style="height:120px; margin:0;"></div>
+      </div>
+      <!-- CTA блок -->
+      <div class="wf-section dark" style="text-align:center; padding:14px;">
+        <div class="wf-h3" style="margin:0 auto 6px; width:70%;"></div>
+        <div class="wf-p med" style="margin:0 auto 10px;"></div>
+        <div class="wf-btn w100" style="margin:0 auto;"></div>
+      </div>
+      <div class="wf-footer">
+        <div class="wf-footer-col"><div class="wf-p full"></div><div class="wf-p med"></div></div>
+        <div class="wf-footer-col"><div class="wf-p full"></div><div class="wf-p full"></div></div>
+        <div class="wf-footer-col"><div class="wf-p full"></div><div class="wf-p med"></div></div>
+      </div>
+      <div class="screen-label">4. Контакты (Contacts)</div>
+    </div>
+
+    <!-- ══ 5. ОТЗЫВЫ ══ -->
+    <div class="screen">
+      <div class="chrome"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="urlbar"></div></div>
+      <div class="wf-header">
+        <div class="wf-logo"><div class="wf-logo-icon"></div><div class="wf-logo-text"></div></div>
+        <div class="wf-nav">
+          <div class="wf-nav-item"></div><div class="wf-nav-item"></div>
+          <div class="wf-nav-item"></div><div class="wf-nav-item"></div><div class="wf-nav-item active"></div>
+        </div>
+        <div class="wf-btn-sm"></div>
+      </div>
+      <div class="wf-section darker" style="padding:16px 14px 10px; text-align:center;">
+        <div class="wf-badge" style="margin:0 auto 8px; display:block;"></div>
+        <div class="wf-h1 sm" style="width:55%; margin:0 auto 5px;"></div>
+        <div class="wf-p med" style="margin:0 auto;"></div>
+      </div>
+      <div class="wf-section">
+        <div class="wf-grid-3">
+          <div class="wf-card"><div class="wf-stars"><div class="wf-star"></div><div class="wf-star"></div><div class="wf-star"></div><div class="wf-star"></div><div class="wf-star"></div></div><div class="wf-p full"></div><div class="wf-p full"></div><div class="wf-p med"></div><div style="display:flex; align-items:center; gap:5px; margin-top:5px;"><div class="wf-avatar sm"></div><div><div class="wf-p short" style="margin:0 0 2px;"></div><div class="wf-p short" style="margin:0; width:40px;"></div></div></div></div>
+          <div class="wf-card"><div class="wf-stars"><div class="wf-star"></div><div class="wf-star"></div><div class="wf-star"></div><div class="wf-star"></div><div class="wf-star"></div></div><div class="wf-p full"></div><div class="wf-p full"></div><div class="wf-p med"></div><div style="display:flex; align-items:center; gap:5px; margin-top:5px;"><div class="wf-avatar sm"></div><div><div class="wf-p short" style="margin:0 0 2px;"></div><div class="wf-p short" style="margin:0; width:40px;"></div></div></div></div>
+          <div class="wf-card"><div class="wf-stars"><div class="wf-star"></div><div class="wf-star"></div><div class="wf-star"></div><div class="wf-star"></div><div class="wf-star"></div></div><div class="wf-p full"></div><div class="wf-p full"></div><div class="wf-p med"></div><div style="display:flex; align-items:center; gap:5px; margin-top:5px;"><div class="wf-avatar sm"></div><div><div class="wf-p short" style="margin:0 0 2px;"></div><div class="wf-p short" style="margin:0; width:40px;"></div></div></div></div>
+          <div class="wf-card"><div class="wf-stars"><div class="wf-star"></div><div class="wf-star"></div><div class="wf-star"></div><div class="wf-star"></div><div class="wf-star"></div></div><div class="wf-p full"></div><div class="wf-p med"></div><div style="display:flex; align-items:center; gap:5px; margin-top:5px;"><div class="wf-avatar sm"></div><div><div class="wf-p short" style="margin:0 0 2px;"></div></div></div></div>
+          <div class="wf-card"><div class="wf-stars"><div class="wf-star"></div><div class="wf-star"></div><div class="wf-star"></div><div class="wf-star"></div><div class="wf-star"></div></div><div class="wf-p full"></div><div class="wf-p med"></div><div style="display:flex; align-items:center; gap:5px; margin-top:5px;"><div class="wf-avatar sm"></div><div><div class="wf-p short" style="margin:0 0 2px;"></div></div></div></div>
+          <div class="wf-card"><div class="wf-stars"><div class="wf-star"></div><div class="wf-star"></div><div class="wf-star"></div><div class="wf-star"></div><div class="wf-star"></div></div><div class="wf-p full"></div><div class="wf-p med"></div><div style="display:flex; align-items:center; gap:5px; margin-top:5px;"><div class="wf-avatar sm"></div><div><div class="wf-p short" style="margin:0 0 2px;"></div></div></div></div>
+        </div>
+        <div class="wf-card dark" style="background:#eee; text-align:center; margin-top:8px; padding:12px;">
+          <div class="wf-h3" style="margin:0 auto 5px; width:60%;"></div>
+          <div class="wf-p med" style="margin:0 auto 8px;"></div>
+          <div class="wf-btn w100" style="margin:0 auto;"></div>
+        </div>
+      </div>
+      <div class="wf-footer">
+        <div class="wf-footer-col"><div class="wf-p full"></div><div class="wf-p med"></div></div>
+        <div class="wf-footer-col"><div class="wf-p full"></div><div class="wf-p full"></div></div>
+        <div class="wf-footer-col"><div class="wf-p full"></div><div class="wf-p med"></div></div>
+      </div>
+      <div class="screen-label">5. Отзывы (Reviews)</div>
+    </div>
+
+    <!-- ══ 6. МОДАЛЬНОЕ ОКНО БРОНИРОВАНИЯ ══ -->
+    <div class="screen">
+      <div class="chrome"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="urlbar"></div></div>
+      <div class="wf-header">
+        <div class="wf-logo"><div class="wf-logo-icon"></div><div class="wf-logo-text"></div></div>
+        <div class="wf-nav">
+          <div class="wf-nav-item"></div><div class="wf-nav-item active"></div>
+          <div class="wf-nav-item"></div><div class="wf-nav-item"></div><div class="wf-nav-item"></div>
+        </div>
+        <div class="wf-btn-sm"></div>
+      </div>
+      <div class="wf-modal-overlay">
+        <div class="wf-modal">
+          <div class="wf-modal-header">
+            <div class="wf-h3" style="width:120px; margin:0;"></div>
+            <div class="wf-close"></div>
+          </div>
+          <div class="wf-p med" style="margin-bottom:10px;"></div>
+          <div class="wf-input-grid">
+            <div><div class="wf-label"></div><div class="wf-input"></div></div>
+            <div><div class="wf-label"></div><div class="wf-input"></div></div>
+          </div>
+          <div><div class="wf-label"></div><div class="wf-input"></div></div>
+          <div class="wf-input-grid">
+            <div><div class="wf-label"></div><div class="wf-input"></div></div>
+            <div><div class="wf-label"></div><div class="wf-input"></div></div>
+          </div>
+          <div class="wf-input-grid">
+            <div><div class="wf-label"></div><div class="wf-input"></div></div>
+            <div><div class="wf-label"></div><div class="wf-input"></div></div>
+          </div>
+          <div><div class="wf-label"></div><div class="wf-input" style="height:30px;"></div></div>
+          <div class="wf-btn" style="width:100%; margin-top:6px;"></div>
+        </div>
+      </div>
+      <div class="screen-label">6. Модальное окно бронирования</div>
+    </div>
+
+  </div>
+</body>
+</html>

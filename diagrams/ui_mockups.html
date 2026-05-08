@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <title>UI Mockups — Music Prod Studio</title>
+  <style>
+    :root {
+      --bg:       #09090e;
+      --bg-2:     #0f0f17;
+      --bg-3:     #161622;
+      --accent:   #a855f7;
+      --accent2:  #c084fc;
+      --text:     #c8c8dc;
+      --bright:   #e0e0f0;
+      --dim:      #6a6a85;
+      --dim2:     #8a8aa5;
+      --border:   #1e1e2e;
+      --border2:  #272738;
+      --card:     #0f0f1a;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #1a1a2e; padding: 36px; }
+
+    .page-label { font-size: 13px; font-weight: 700; color: #e0e0f0; margin-bottom: 4px; }
+    .page-sub   { font-size: 10px; color: #6a6a85; margin-bottom: 32px; }
+
+    .grid { display: flex; flex-wrap: wrap; gap: 28px; }
+
+    /* ── Экран ── */
+    .screen { width: 340px; border-radius: 10px; overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,.6); border: 1px solid var(--border2); background: var(--bg); }
+
+    /* Chrome браузера */
+    .chrome { background: #13131f; padding: 7px 10px; display: flex; align-items: center; gap: 4px; border-bottom: 1px solid var(--border); }
+    .dot { width: 7px; height: 7px; border-radius: 50%; }
+    .dot.r { background: #ff5f57; } .dot.y { background: #febc2e; } .dot.g { background: #28c840; }
+    .urlbar { flex: 1; height: 14px; background: #1e1e2e; border-radius: 3px; margin-left: 6px; display: flex; align-items: center; padding: 0 8px; }
+    .url-text { font-size: 7px; color: var(--dim); }
+
+    /* ══ HEADER ══ */
+    .ui-header {
+      background: rgba(9,9,14,.85);
+      backdrop-filter: blur(14px);
+      padding: 8px 14px;
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 10;
+    }
+    .ui-logo { display: flex; align-items: center; gap: 6px; }
+    .ui-logo-icon {
+      width: 22px; height: 22px;
+      background: linear-gradient(135deg, #9333ea, #7c3aed);
+      border-radius: 5px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .ui-logo-icon::after { content: '♪'; font-size: 9px; color: #fff; }
+    .ui-logo-name { font-size: 10px; font-weight: 800; color: var(--bright); letter-spacing: .3px; }
+    .ui-nav { display: flex; gap: 12px; }
+    .ui-nav-link { font-size: 8px; color: var(--dim2); cursor: pointer; }
+    .ui-nav-link.active { color: var(--bright); }
+    .ui-header-btn {
+      font-size: 7.5px; font-weight: 600; color: #fff;
+      background: linear-gradient(135deg, #9333ea, #7c3aed);
+      padding: 5px 10px; border-radius: 5px;
+      box-shadow: 0 0 12px rgba(147,51,234,.4);
+    }
+
+    /* ══ СЕКЦИИ ══ */
+    .s { padding: 18px 14px; border-bottom: 1px solid var(--border); }
+    .s.alt { background: var(--bg-2); }
+    .s.dark { background: var(--bg-3); }
+
+    /* Типографика */
+    .badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      background: rgba(168,85,247,.12); border: 1px solid rgba(168,85,247,.3);
+      color: var(--accent2); font-size: 7px; font-weight: 600;
+      padding: 3px 8px; border-radius: 20px; margin-bottom: 8px;
+    }
+    .badge-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); }
+    .section-label {
+      font-size: 7px; color: var(--accent); font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1px;
+      display: block; text-align: center; margin-bottom: 4px;
+    }
+    .h1 { font-size: 18px; font-weight: 900; color: var(--bright); line-height: 1.15; margin-bottom: 6px; }
+    .h1 span { background: linear-gradient(90deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .h2 { font-size: 13px; font-weight: 800; color: var(--bright); margin-bottom: 5px; text-align: center; }
+    .h3 { font-size: 10px; font-weight: 700; color: var(--bright); margin-bottom: 4px; }
+    .p  { font-size: 8px; color: var(--text); line-height: 1.6; margin-bottom: 4px; }
+    .dim-text { font-size: 7.5px; color: var(--dim2); }
+
+    /* Кнопки */
+    .btn-primary {
+      display: inline-flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #9333ea, #7c3aed);
+      color: #fff; font-size: 8px; font-weight: 700;
+      padding: 7px 14px; border-radius: 7px;
+      box-shadow: 0 0 16px rgba(147,51,234,.35);
+    }
+    .btn-outline {
+      display: inline-flex; align-items: center; justify-content: center;
+      background: transparent; border: 1px solid var(--border2);
+      color: var(--text); font-size: 8px; font-weight: 600;
+      padding: 7px 14px; border-radius: 7px;
+    }
+    .btn-row { display: flex; gap: 8px; margin-top: 10px; }
+
+    /* Статистики */
+    .stats-row { display: flex; gap: 12px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
+    .stat-num { font-size: 14px; font-weight: 800; color: var(--bright); }
+    .stat-lbl { font-size: 6.5px; color: var(--dim2); margin-top: 1px; line-height: 1.3; }
+
+    /* Карточки */
+    .card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 8px; padding: 10px;
+      transition: border-color .2s;
+    }
+    .card:hover { border-color: var(--border2); }
+
+    /* Сетки */
+    .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 7px; }
+    .g4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 6px; }
+
+    /* Иконка-блок */
+    .icon-box {
+      width: 26px; height: 26px; border-radius: 6px;
+      background: rgba(255,255,255,.055);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 6px;
+    }
+    .icon-box span { font-size: 11px; }
+
+    /* Слайдер работ */
+    .slider-wrap { display: flex; gap: 8px; overflow: hidden; margin-top: 8px; }
+    .slide-card {
+      min-width: 90px; height: 80px; border-radius: 6px;
+      background: var(--bg-3); border: 1px solid var(--border2);
+      flex-shrink: 0; overflow: hidden; position: relative;
+    }
+    .slide-img { width: 100%; height: 50px; background: linear-gradient(135deg, #1a0a2e, #2d1060); }
+    .slide-info { padding: 4px 6px; }
+    .slide-title { font-size: 7px; font-weight: 600; color: var(--bright); }
+    .slide-genre { font-size: 6px; color: var(--accent2); }
+    .genre-badge {
+      position: absolute; top: 4px; right: 4px;
+      background: rgba(168,85,247,.25); border: 1px solid rgba(168,85,247,.4);
+      color: var(--accent2); font-size: 5.5px; font-weight: 600;
+      padding: 1px 4px; border-radius: 8px;
+    }
+    .waveform { display: flex; align-items: center; gap: 1px; padding: 4px 6px 0; }
+    .wf-bar { width: 2px; background: var(--accent); opacity: .5; border-radius: 1px; }
+
+    /* Тарифные карточки */
+    .tariff-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 12px; position: relative;
+    }
+    .tariff-card.featured {
+      background: linear-gradient(160deg, #100f1e 0%, var(--card) 100%);
+      border-color: rgba(168,85,247,.4);
+      grid-column: 1 / -1;
+    }
+    .tariff-name { font-size: 9px; font-weight: 700; color: var(--bright); margin-bottom: 4px; }
+    .tariff-price { font-size: 17px; font-weight: 900; color: var(--bright); margin-bottom: 2px; }
+    .tariff-price span { font-size: 8px; font-weight: 400; color: var(--dim2); }
+    .tariff-features { margin: 6px 0; }
+    .tf-item { display: flex; align-items: center; gap: 5px; margin-bottom: 3px; }
+    .tf-check { font-size: 7px; color: var(--accent); }
+    .tf-text { font-size: 7px; color: var(--text); }
+    .featured-badge {
+      position: absolute; top: -1px; right: 12px;
+      background: linear-gradient(135deg, #9333ea, #7c3aed);
+      color: #fff; font-size: 6px; font-weight: 700;
+      padding: 2px 7px; border-radius: 0 0 6px 6px;
+    }
+
+    /* Аватары команды */
+    .avatar { width: 32px; height: 32px; border-radius: 50%; margin: 0 auto 5px; border: 2px solid var(--border2); }
+    .avatar.a1 { background: linear-gradient(135deg, #4A90D9, #1a6bb5); }
+    .avatar.a2 { background: linear-gradient(135deg, #e67e22, #d35400); }
+    .avatar.a3 { background: linear-gradient(135deg, #27ae60, #1e8449); }
+    .avatar.a4 { background: linear-gradient(135deg, #8e44ad, #6c3483); }
+    .avatar.sm { width: 22px; height: 22px; margin: 0; border-radius: 50%; flex-shrink: 0; }
+
+    /* Контакты */
+    .contact-item { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+    .ci-icon {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: rgba(168,85,247,.12); border: 1px solid rgba(168,85,247,.25);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 9px;
+    }
+    .social-row { display: flex; gap: 6px; margin-top: 8px; }
+    .social-btn {
+      width: 24px; height: 24px; border-radius: 6px;
+      background: var(--bg-3); border: 1px solid var(--border2);
+      display: flex; align-items: center; justify-content: center; font-size: 9px;
+    }
+    .map-placeholder { background: var(--bg-3); border: 1px solid var(--border2); border-radius: 8px; height: 90px; display: flex; align-items: center; justify-content: center; }
+    .map-inner { font-size: 7px; color: var(--dim); }
+
+    /* Отзывы */
+    .review-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 9px; }
+    .stars { color: #f59e0b; font-size: 8px; margin-bottom: 4px; }
+    .review-text { font-size: 7px; color: var(--text); line-height: 1.5; margin-bottom: 6px; }
+    .review-author { display: flex; align-items: center; gap: 5px; border-top: 1px solid var(--border); padding-top: 5px; }
+    .author-name { font-size: 7px; font-weight: 700; color: var(--bright); }
+    .author-date { font-size: 6px; color: var(--dim); }
+
+    /* CTA блок */
+    .cta-box {
+      background: linear-gradient(135deg, rgba(147,51,234,.12), rgba(124,58,237,.06));
+      border: 1px solid rgba(168,85,247,.25); border-radius: 10px;
+      padding: 14px; text-align: center; margin-top: 8px;
+    }
+
+    /* Модальное окно */
+    .modal-overlay {
+      background: rgba(0,0,0,.65);
+      backdrop-filter: blur(8px);
+      padding: 14px;
+      display: flex; align-items: flex-start; justify-content: center;
+    }
+    .modal-box {
+      background: var(--bg-2); border: 1px solid var(--border2);
+      border-radius: 10px; padding: 14px; width: 100%;
+      box-shadow: 0 16px 48px rgba(0,0,0,.6);
+    }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+    .modal-close {
+      width: 18px; height: 18px; border-radius: 50%;
+      background: var(--bg-3); border: 1px solid var(--border2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 9px; color: var(--dim2); cursor: pointer;
+    }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+    .form-group { margin-bottom: 6px; }
+    .form-label { font-size: 7px; color: var(--dim2); margin-bottom: 3px; display: block; }
+    .form-input {
+      width: 100%; height: 22px; background: var(--bg-3);
+      border: 1px solid var(--border2); border-radius: 5px;
+      padding: 0 8px; font-size: 7.5px; color: var(--text);
+      display: flex; align-items: center;
+    }
+    .form-input.placeholder { color: var(--dim); }
+    .form-textarea { height: 34px; }
+
+    /* Оборудование */
+    .equip-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 7px; padding: 7px; text-align: center;
+    }
+    .equip-icon { font-size: 13px; margin-bottom: 3px; display: block; }
+    .equip-name { font-size: 6.5px; color: var(--text); line-height: 1.3; }
+
+    /* Футер */
+    .ui-footer {
+      background: var(--bg); border-top: 1px solid var(--border);
+      padding: 12px 14px;
+      display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 8px;
+    }
+    .footer-brand-name { font-size: 9px; font-weight: 800; color: var(--bright); margin-bottom: 4px; }
+    .footer-link { font-size: 7px; color: var(--dim2); margin-bottom: 3px; display: block; }
+    .footer-copy { font-size: 6.5px; color: var(--dim); border-top: 1px solid var(--border); margin-top: 8px; padding-top: 6px; text-align: center; grid-column: 1/-1; }
+
+    /* Подпись экрана */
+    .screen-label { font-size: 8.5px; font-weight: 600; color: var(--dim2); text-align: center; padding: 6px; background: #0a0a12; border-top: 1px solid var(--border); }
+  </style>
+</head>
+<body>
+
+  <div class="page-label">Music Prod Studio — UI Mockups</div>
+  <p class="page-sub">Цветные экраны 1:1 с реальным сайтом · тёмная тема #09090e · акцент #a855f7</p>
+
+  <div class="grid">
+
+    <!-- ══════════════ 1. ГЛАВНАЯ ══════════════ -->
+    <div class="screen">
+      <div class="chrome">
+        <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+        <div class="urlbar"><span class="url-text">musicprod.studio</span></div>
+      </div>
+      <!-- Header -->
+      <div class="ui-header">
+        <div class="ui-logo"><div class="ui-logo-icon"></div><div class="ui-logo-name">Music Prod</div></div>
+        <div class="ui-nav">
+          <span class="ui-nav-link active">Главная</span>
+          <span class="ui-nav-link">Тарифы</span>
+          <span class="ui-nav-link">О нас</span>
+          <span class="ui-nav-link">Контакты</span>
+          <span class="ui-nav-link">Отзывы</span>
+        </div>
+        <div class="ui-header-btn">Записаться</div>
+      </div>
+      <!-- Hero -->
+      <div class="s" style="background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(147,51,234,.18) 0%, transparent 70%), var(--bg); padding: 22px 14px 16px;">
+        <div class="badge"><div class="badge-dot"></div>Студия звукозаписи · Москва</div>
+        <div class="h1">Создай звук,<br><span>который помнят</span></div>
+        <div class="p" style="max-width:220px;">Профессиональная запись, сведение и мастеринг с опытными звукорежиссёрами.</div>
+        <div class="btn-row">
+          <div class="btn-primary">Забронировать сессию</div>
+          <div class="btn-outline">Наши тарифы</div>
+        </div>
+        <div class="stats-row">
+          <div><div class="stat-num">350+</div><div class="stat-lbl">Довольных<br>клиентов</div></div>
+          <div><div class="stat-num">8</div><div class="stat-lbl">Лет<br>на рынке</div></div>
+          <div><div class="stat-num">1200+</div><div class="stat-lbl">Треков<br>записано</div></div>
+        </div>
+      </div>
+      <!-- Почему мы -->
+      <div class="s alt">
+        <span class="section-label">ПОЧЕМУ МЫ</span>
+        <div class="g2" style="margin-top:6px;">
+          <div class="card"><div class="icon-box"><span>🎙</span></div><div class="h3">Топовое оборудование</div><div class="p">Neumann, Universal Audio, Pro Tools</div></div>
+          <div class="card"><div class="icon-box"><span>🎧</span></div><div class="h3">Опытные режиссёры</div><div class="p">Стаж от 5 лет, 100+ проектов</div></div>
+          <div class="card"><div class="icon-box"><span>⚡</span></div><div class="h3">Быстрые сроки</div><div class="p">Готовый трек за 24–48 ч</div></div>
+          <div class="card"><div class="icon-box"><span>💎</span></div><div class="h3">Гарантия качества</div><div class="p">Доработки до полного ОК</div></div>
+        </div>
+      </div>
+      <!-- Works -->
+      <div class="s" style="background:var(--bg-2);">
+        <span class="section-label">НАШИ РАБОТЫ</span>
+        <div class="slider-wrap">
+          <div class="slide-card">
+            <div class="slide-img"></div>
+            <div class="genre-badge">Поп</div>
+            <div class="slide-info"><div class="slide-title">Трек #1</div></div>
+            <div class="waveform">
+              <div class="wf-bar" style="height:8px;"></div><div class="wf-bar" style="height:14px;"></div><div class="wf-bar" style="height:6px;"></div><div class="wf-bar" style="height:10px;"></div><div class="wf-bar" style="height:12px;"></div><div class="wf-bar" style="height:5px;"></div><div class="wf-bar" style="height:9px;"></div><div class="wf-bar" style="height:7px;"></div>
+            </div>
+          </div>
+          <div class="slide-card">
+            <div class="slide-img" style="background: linear-gradient(135deg,#0a1a2e,#1060a0);"></div>
+            <div class="genre-badge">Рок</div>
+            <div class="slide-info"><div class="slide-title">Трек #2</div></div>
+            <div class="waveform">
+              <div class="wf-bar" style="height:12px;"></div><div class="wf-bar" style="height:6px;"></div><div class="wf-bar" style="height:10px;"></div><div class="wf-bar" style="height:14px;"></div><div class="wf-bar" style="height:8px;"></div><div class="wf-bar" style="height:11px;"></div>
+            </div>
+          </div>
+          <div class="slide-card">
+            <div class="slide-img" style="background: linear-gradient(135deg,#0a2e1a,#106040);"></div>
+            <div class="genre-badge">R&B</div>
+            <div class="slide-info"><div class="slide-title">Трек #3</div></div>
+            <div class="waveform">
+              <div class="wf-bar" style="height:9px;"></div><div class="wf-bar" style="height:13px;"></div><div class="wf-bar" style="height:5px;"></div><div class="wf-bar" style="height:11px;"></div><div class="wf-bar" style="height:7px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Footer -->
+      <div class="ui-footer">
+        <div><div class="footer-brand-name">🎵 Music Prod</div><div class="p" style="font-size:7px;">Профессиональная студия звукозаписи в Москве</div></div>
+        <div><div class="dim-text" style="font-weight:700; margin-bottom:4px;">Навигация</div><span class="footer-link">Главная</span><span class="footer-link">Тарифы</span><span class="footer-link">О нас</span></div>
+        <div><div class="dim-text" style="font-weight:700; margin-bottom:4px;">Контакты</div><span class="footer-link">+7 (999) 123-45-67</span><span class="footer-link">info@musicprod.ru</span></div>
+        <div class="footer-copy">© 2024 Music Prod. Все права защищены.</div>
+      </div>
+      <div class="screen-label">1. Главная страница (Home)</div>
+    </div>
+
+    <!-- ══════════════ 2. ТАРИФЫ ══════════════ -->
+    <div class="screen">
+      <div class="chrome">
+        <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+        <div class="urlbar"><span class="url-text">musicprod.studio/#tariffs</span></div>
+      </div>
+      <div class="ui-header">
+        <div class="ui-logo"><div class="ui-logo-icon"></div><div class="ui-logo-name">Music Prod</div></div>
+        <div class="ui-nav">
+          <span class="ui-nav-link">Главная</span>
+          <span class="ui-nav-link active">Тарифы</span>
+          <span class="ui-nav-link">О нас</span>
+          <span class="ui-nav-link">Контакты</span>
+          <span class="ui-nav-link">Отзывы</span>
+        </div>
+        <div class="ui-header-btn">Записаться</div>
+      </div>
+      <div class="s" style="text-align:center; background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(147,51,234,.15) 0%, transparent 70%), var(--bg); padding:16px 14px 10px;">
+        <div class="badge">Прозрачные цены</div>
+        <div class="h2">Тарифы студии</div>
+        <div class="p" style="text-align:center; max-width:220px; margin:0 auto;">Выберите подходящий формат записи</div>
+      </div>
+      <div class="s alt">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+          <div class="tariff-card">
+            <div class="tariff-name">Вокал соло</div>
+            <div class="tariff-price">1 500 <span>₽/ч</span></div>
+            <div class="tariff-features">
+              <div class="tf-item"><div class="tf-check">✓</div><div class="tf-text">Запись вокала</div></div>
+              <div class="tf-item"><div class="tf-check">✓</div><div class="tf-text">1 режиссёр</div></div>
+              <div class="tf-item"><div class="tf-check">✓</div><div class="tf-text">Базовая обработка</div></div>
+            </div>
+            <div class="btn-outline" style="width:100%; font-size:7.5px; padding:5px 0; justify-content:center;">Выбрать</div>
+          </div>
+          <div class="tariff-card">
+            <div class="tariff-name">Сведение</div>
+            <div class="tariff-price">2 000 <span>₽/ч</span></div>
+            <div class="tariff-features">
+              <div class="tf-item"><div class="tf-check">✓</div><div class="tf-text">Сведение треков</div></div>
+              <div class="tf-item"><div class="tf-check">✓</div><div class="tf-text">Эффекты и обработка</div></div>
+              <div class="tf-item"><div class="tf-check">✓</div><div class="tf-text">Ревизии включены</div></div>
+            </div>
+            <div class="btn-outline" style="width:100%; font-size:7.5px; padding:5px 0; justify-content:center;">Выбрать</div>
+          </div>
+          <div class="tariff-card featured" style="display:grid; grid-template-columns:1fr auto; gap:8px; align-items:start;">
+            <div>
+              <div class="featured-badge">Популярный</div>
+              <div class="tariff-name">Запись инструментов</div>
+              <div class="tariff-price">2 500 <span>₽/ч</span></div>
+              <div class="tariff-features">
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px;">
+                  <div class="tf-item"><div class="tf-check">✓</div><div class="tf-text">Мультитрек</div></div>
+                  <div class="tf-item"><div class="tf-check">✓</div><div class="tf-text">До 5 музыкантов</div></div>
+                  <div class="tf-item"><div class="tf-check">✓</div><div class="tf-text">Сведение+мастер</div></div>
+                  <div class="tf-item"><div class="tf-check">✓</div><div class="tf-text">Файлы WAV/MP3</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="btn-primary" style="font-size:7.5px; padding:5px 10px; margin-top:20px;">Выбрать</div>
+          </div>
+          <div class="tariff-card">
+            <div class="tariff-name">Мастеринг</div>
+            <div class="tariff-price">3 000 <span>₽/тр</span></div>
+            <div class="tariff-features">
+              <div class="tf-item"><div class="tf-check">✓</div><div class="tf-text">Финальный мастеринг</div></div>
+              <div class="tf-item"><div class="tf-check">✓</div><div class="tf-text">Стриминг-готовность</div></div>
+            </div>
+            <div class="btn-outline" style="width:100%; font-size:7.5px; padding:5px 0; justify-content:center;">Выбрать</div>
+          </div>
+        </div>
+      </div>
+      <div class="ui-footer">
+        <div><div class="footer-brand-name">🎵 Music Prod</div><div class="p" style="font-size:7px;">Профессиональная студия</div></div>
+        <div><span class="footer-link">Главная</span><span class="footer-link">Тарифы</span><span class="footer-link">О нас</span></div>
+        <div><span class="footer-link">+7 (999) 123-45-67</span><span class="footer-link">info@musicprod.ru</span></div>
+        <div class="footer-copy">© 2024 Music Prod.</div>
+      </div>
+      <div class="screen-label">2. Тарифы (Tariffs)</div>
+    </div>
+
+    <!-- ══════════════ 3. О НАС ══════════════ -->
+    <div class="screen">
+      <div class="chrome">
+        <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+        <div class="urlbar"><span class="url-text">musicprod.studio/#about</span></div>
+      </div>
+      <div class="ui-header">
+        <div class="ui-logo"><div class="ui-logo-icon"></div><div class="ui-logo-name">Music Prod</div></div>
+        <div class="ui-nav">
+          <span class="ui-nav-link">Главная</span><span class="ui-nav-link">Тарифы</span>
+          <span class="ui-nav-link active">О нас</span><span class="ui-nav-link">Контакты</span><span class="ui-nav-link">Отзывы</span>
+        </div>
+        <div class="ui-header-btn">Записаться</div>
+      </div>
+      <!-- Intro -->
+      <div class="s" style="background: radial-gradient(ellipse at 80% 0%, rgba(147,51,234,.12), transparent 60%), var(--bg); display:grid; grid-template-columns:1fr 90px; gap:10px; padding:14px;">
+        <div>
+          <div class="badge">О студии</div>
+          <div class="h2" style="text-align:left; font-size:12px;">Студия с душой<br>и характером</div>
+          <div class="p">Основана в 2016 году. Специализируемся на записи живых инструментов и вокала, сведении и мастеринге.</div>
+        </div>
+        <div style="background: linear-gradient(135deg,#1a0a2e,#2d1060); border-radius:8px; border:1px solid var(--border2); display:flex; align-items:center; justify-content:center; font-size:22px;">🎙</div>
+      </div>
+      <!-- Оборудование -->
+      <div class="s alt">
+        <span class="section-label">ОБОРУДОВАНИЕ</span>
+        <div class="g4" style="margin-top:6px;">
+          <div class="equip-card"><span class="equip-icon">🎙</span><div class="equip-name">Neumann TLM 103</div></div>
+          <div class="equip-card"><span class="equip-icon">🎚</span><div class="equip-name">Universal Audio Apollo</div></div>
+          <div class="equip-card"><span class="equip-icon">💻</span><div class="equip-name">Pro Tools Ultimate</div></div>
+          <div class="equip-card"><span class="equip-icon">🔊</span><div class="equip-name">Yamaha HS8</div></div>
+          <div class="equip-card"><span class="equip-icon">🎛</span><div class="equip-name">SSL G-Comp</div></div>
+          <div class="equip-card"><span class="equip-icon">🎧</span><div class="equip-name">Sony MDR-7506</div></div>
+          <div class="equip-card"><span class="equip-icon">🎹</span><div class="equip-name">Native Instruments</div></div>
+          <div class="equip-card"><span class="equip-icon">📡</span><div class="equip-name">Focusrite ISA</div></div>
+        </div>
+      </div>
+      <!-- Команда -->
+      <div class="s" style="background:var(--bg-2);">
+        <span class="section-label">НАША КОМАНДА</span>
+        <div class="g2" style="margin-top:6px;">
+          <div class="card" style="text-align:center; padding:10px 7px;">
+            <div class="avatar a1" style="margin:0 auto 5px;"></div>
+            <div class="h3" style="font-size:8.5px; text-align:center;">Андрей Смирнов</div>
+            <div class="dim-text" style="text-align:center;">Рок, Поп · 8 лет</div>
+          </div>
+          <div class="card" style="text-align:center; padding:10px 7px;">
+            <div class="avatar a2" style="margin:0 auto 5px;"></div>
+            <div class="h3" style="font-size:8.5px; text-align:center;">Михаил Козлов</div>
+            <div class="dim-text" style="text-align:center;">Электроника · 5 лет</div>
+          </div>
+          <div class="card" style="text-align:center; padding:10px 7px;">
+            <div class="avatar a3" style="margin:0 auto 5px;"></div>
+            <div class="h3" style="font-size:8.5px; text-align:center;">Ольга Петрова</div>
+            <div class="dim-text" style="text-align:center;">Джаз, Классика · 12 лет</div>
+          </div>
+          <div class="card" style="text-align:center; padding:10px 7px;">
+            <div class="avatar a4" style="margin:0 auto 5px;"></div>
+            <div class="h3" style="font-size:8.5px; text-align:center;">Дмитрий Волков</div>
+            <div class="dim-text" style="text-align:center;">Hip-hop, R&B · 6 лет</div>
+          </div>
+        </div>
+      </div>
+      <div class="ui-footer">
+        <div><div class="footer-brand-name">🎵 Music Prod</div><div class="p" style="font-size:7px;">Студия звукозаписи</div></div>
+        <div><span class="footer-link">Главная</span><span class="footer-link">Тарифы</span><span class="footer-link">О нас</span></div>
+        <div><span class="footer-link">+7 (999) 123-45-67</span><span class="footer-link">info@musicprod.ru</span></div>
+        <div class="footer-copy">© 2024 Music Prod.</div>
+      </div>
+      <div class="screen-label">3. О нас (About)</div>
+    </div>
+
+    <!-- ══════════════ 4. КОНТАКТЫ ══════════════ -->
+    <div class="screen">
+      <div class="chrome">
+        <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+        <div class="urlbar"><span class="url-text">musicprod.studio/#contacts</span></div>
+      </div>
+      <div class="ui-header">
+        <div class="ui-logo"><div class="ui-logo-icon"></div><div class="ui-logo-name">Music Prod</div></div>
+        <div class="ui-nav">
+          <span class="ui-nav-link">Главная</span><span class="ui-nav-link">Тарифы</span>
+          <span class="ui-nav-link">О нас</span><span class="ui-nav-link active">Контакты</span><span class="ui-nav-link">Отзывы</span>
+        </div>
+        <div class="ui-header-btn">Записаться</div>
+      </div>
+      <div class="s" style="text-align:center; background: radial-gradient(ellipse at 50% 0%, rgba(147,51,234,.12), transparent 70%), var(--bg); padding:14px 14px 10px;">
+        <div class="badge">Свяжитесь с нами</div>
+        <div class="h2">Контакты</div>
+      </div>
+      <div class="s alt" style="display:grid; grid-template-columns:1fr 130px; gap:12px; padding:12px 14px;">
+        <div>
+          <div class="contact-item"><div class="ci-icon">📍</div><div><div class="h3" style="font-size:8px;">Адрес</div><div class="dim-text">Москва, ул. Студийная, 12</div></div></div>
+          <div class="contact-item"><div class="ci-icon">📞</div><div><div class="h3" style="font-size:8px;">Телефон</div><div class="dim-text">+7 (999) 123-45-67</div></div></div>
+          <div class="contact-item"><div class="ci-icon">✉️</div><div><div class="h3" style="font-size:8px;">Email</div><div class="dim-text">info@musicprod.ru</div></div></div>
+          <div class="contact-item"><div class="ci-icon">🕐</div><div><div class="h3" style="font-size:8px;">Режим работы</div><div class="dim-text">Пн–Вс: 10:00–22:00</div></div></div>
+          <div class="social-row">
+            <div class="social-btn">В</div>
+            <div class="social-btn">✈</div>
+            <div class="social-btn">📷</div>
+            <div class="social-btn">▶</div>
+          </div>
+        </div>
+        <div class="map-placeholder"><div class="map-inner">🗺 Карта студии</div></div>
+      </div>
+      <!-- CTA -->
+      <div class="s" style="background:var(--bg-2);">
+        <div class="cta-box">
+          <div class="h3" style="text-align:center; margin-bottom:4px; font-size:10px;">Готовы начать?</div>
+          <div class="p" style="text-align:center; margin-bottom:8px;">Забронируйте сессию прямо сейчас</div>
+          <div style="text-align:center;"><div class="btn-primary" style="display:inline-flex;">Записаться на сессию</div></div>
+        </div>
+      </div>
+      <div class="ui-footer">
+        <div><div class="footer-brand-name">🎵 Music Prod</div><div class="p" style="font-size:7px;">Студия звукозаписи</div></div>
+        <div><span class="footer-link">Главная</span><span class="footer-link">Тарифы</span><span class="footer-link">Контакты</span></div>
+        <div><span class="footer-link">+7 (999) 123-45-67</span><span class="footer-link">info@musicprod.ru</span></div>
+        <div class="footer-copy">© 2024 Music Prod.</div>
+      </div>
+      <div class="screen-label">4. Контакты (Contacts)</div>
+    </div>
+
+    <!-- ══════════════ 5. ОТЗЫВЫ ══════════════ -->
+    <div class="screen">
+      <div class="chrome">
+        <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+        <div class="urlbar"><span class="url-text">musicprod.studio/#reviews</span></div>
+      </div>
+      <div class="ui-header">
+        <div class="ui-logo"><div class="ui-logo-icon"></div><div class="ui-logo-name">Music Prod</div></div>
+        <div class="ui-nav">
+          <span class="ui-nav-link">Главная</span><span class="ui-nav-link">Тарифы</span>
+          <span class="ui-nav-link">О нас</span><span class="ui-nav-link">Контакты</span><span class="ui-nav-link active">Отзывы</span>
+        </div>
+        <div class="ui-header-btn">Записаться</div>
+      </div>
+      <div class="s" style="text-align:center; background: radial-gradient(ellipse at 50% 0%, rgba(147,51,234,.12), transparent 70%), var(--bg); padding:14px 14px 10px;">
+        <div class="badge">Отзывы клиентов</div>
+        <div class="h2">Что говорят музыканты</div>
+        <div class="p" style="text-align:center; max-width:200px; margin:0 auto;">Более 350 довольных клиентов за 8 лет работы</div>
+      </div>
+      <div class="s alt">
+        <div class="g3">
+          <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <div class="review-text">Отличная студия! Звук получился именно таким, каким я его слышал в голове.</div>
+            <div class="review-author"><div class="avatar sm a1"></div><div><div class="author-name">Алексей К.</div><div class="author-date">Март 2024</div></div></div>
+          </div>
+          <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <div class="review-text">Михаил — профессионал высшего класса. Сведение просто шедевр.</div>
+            <div class="review-author"><div class="avatar sm a2"></div><div><div class="author-name">Мария Д.</div><div class="author-date">Фев 2024</div></div></div>
+          </div>
+          <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <div class="review-text">Приятная атмосфера, крутое оборудование. Вернусь снова!</div>
+            <div class="review-author"><div class="avatar sm a3"></div><div><div class="author-name">Игорь В.</div><div class="author-date">Янв 2024</div></div></div>
+          </div>
+          <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <div class="review-text">Записали EP за 2 дня. Качество превзошло ожидания.</div>
+            <div class="review-author"><div class="avatar sm a4"></div><div><div class="author-name">Анна С.</div><div class="author-date">Дек 2023</div></div></div>
+          </div>
+          <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <div class="review-text">Ольга чудесно работает с вокалом. Рекомендую всем!</div>
+            <div class="review-author"><div class="avatar sm a1"></div><div><div class="author-name">Пётр Н.</div><div class="author-date">Ноя 2023</div></div></div>
+          </div>
+          <div class="review-card">
+            <div class="stars">★★★★★</div>
+            <div class="review-text">Цена — качество на высоте. Лучшая студия в Москве.</div>
+            <div class="review-author"><div class="avatar sm a2"></div><div><div class="author-name">Дарья Л.</div><div class="author-date">Окт 2023</div></div></div>
+          </div>
+        </div>
+        <div class="cta-box" style="margin-top:8px;">
+          <div class="h3" style="text-align:center; margin-bottom:4px;">Готовы записать свой трек?</div>
+          <div class="p" style="text-align:center; margin-bottom:8px;">Присоединяйтесь к 350+ довольным клиентам</div>
+          <div style="text-align:center;"><div class="btn-primary" style="display:inline-flex;">Забронировать сессию</div></div>
+        </div>
+      </div>
+      <div class="ui-footer">
+        <div><div class="footer-brand-name">🎵 Music Prod</div><div class="p" style="font-size:7px;">Студия звукозаписи</div></div>
+        <div><span class="footer-link">Главная</span><span class="footer-link">Тарифы</span><span class="footer-link">Отзывы</span></div>
+        <div><span class="footer-link">+7 (999) 123-45-67</span><span class="footer-link">info@musicprod.ru</span></div>
+        <div class="footer-copy">© 2024 Music Prod.</div>
+      </div>
+      <div class="screen-label">5. Отзывы (Reviews)</div>
+    </div>
+
+    <!-- ══════════════ 6. МОДАЛЬНОЕ ОКНО ══════════════ -->
+    <div class="screen">
+      <div class="chrome">
+        <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+        <div class="urlbar"><span class="url-text">musicprod.studio/#tariffs</span></div>
+      </div>
+      <div class="ui-header">
+        <div class="ui-logo"><div class="ui-logo-icon"></div><div class="ui-logo-name">Music Prod</div></div>
+        <div class="ui-nav">
+          <span class="ui-nav-link">Главная</span><span class="ui-nav-link active">Тарифы</span>
+          <span class="ui-nav-link">О нас</span><span class="ui-nav-link">Контакты</span><span class="ui-nav-link">Отзывы</span>
+        </div>
+        <div class="ui-header-btn">Записаться</div>
+      </div>
+      <div class="modal-overlay">
+        <div class="modal-box">
+          <div class="modal-header">
+            <div>
+              <div class="h3" style="font-size:10px;">Записаться на сессию</div>
+              <div class="dim-text" style="margin-top:2px;">Заполните форму и мы свяжемся с вами</div>
+            </div>
+            <div class="modal-close">✕</div>
+          </div>
+          <div style="height:1px; background:var(--border); margin:8px 0;"></div>
+          <div class="form-grid">
+            <div class="form-group">
+              <div class="form-label">Имя *</div>
+              <div class="form-input placeholder">Ваше имя</div>
+            </div>
+            <div class="form-group">
+              <div class="form-label">Телефон *</div>
+              <div class="form-input placeholder">+7 (___) ___-__-__</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-label">Email</div>
+            <div class="form-input placeholder">you@example.com</div>
+          </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <div class="form-label">Тариф *</div>
+              <div class="form-input" style="color:var(--accent2);">Запись инструментов ▾</div>
+            </div>
+            <div class="form-group">
+              <div class="form-label">Режиссёр</div>
+              <div class="form-input placeholder">Любой ▾</div>
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <div class="form-label">Желаемая дата</div>
+              <div class="form-input placeholder">дд.мм.гггг</div>
+            </div>
+            <div class="form-group">
+              <div class="form-label">Время</div>
+              <div class="form-input placeholder">чч:мм</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-label">Комментарий</div>
+            <div class="form-input placeholder form-textarea" style="height:32px; align-items:flex-start; padding-top:5px;">Пожелания, детали проекта...</div>
+          </div>
+          <div class="btn-primary" style="width:100%; margin-top:4px; font-size:8.5px; padding:8px 0; justify-content:center;">Отправить заявку</div>
+          <div style="text-align:center; margin-top:5px; font-size:6.5px; color:var(--dim);">Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности</div>
+        </div>
+      </div>
+      <div class="screen-label">6. Модальное окно бронирования</div>
+    </div>
+
+  </div>
+</body>
+</html>

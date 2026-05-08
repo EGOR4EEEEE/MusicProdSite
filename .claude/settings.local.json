@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Claude_Preview__preview_start",
+      "Bash(powershell -NoProfile -ExecutionPolicy Bypass -Command \"try { \\(New-Object Net.WebClient\\).DownloadString\\(''http://localhost:3000''\\) | Select-String -Pattern ''<title>'' | Select-Object -First 1 } catch { $_Exception.Message }\")",
+      "Bash(powershell -NoProfile -Command \"Get-Process -Name powershell | Where-Object { $_Id -ne $PID } | Stop-Process -Force 2>$null; netstat -an | findstr '':3000''\")",
+      "Bash(powershell -NoProfile -Command \":*)",
+      "Bash(netstat -ano)",
+      "Bash(tasklist /FI 'PID eq 4')",
+      "Bash(taskkill /PID 4 /F)",
+      "Bash(taskkill /F /IM dotnet.exe)",
+      "Bash(taskkill /F /IM MusicProdApi.exe)",
+      "Bash(docker ps:*)"
+    ]
+  }
+}

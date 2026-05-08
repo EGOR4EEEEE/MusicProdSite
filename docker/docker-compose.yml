@@ -1,0 +1,44 @@
+services:
+
+  # ── SQL Server 2022 ──────────────────────────────────────────────────
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: musicprod-db
+    env_file: .env
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: ${SA_PASSWORD}
+      MSSQL_PID: "Express"
+    ports:
+      - "1433:1433"
+    volumes: []
+    healthcheck:
+      test: ["CMD", "/opt/mssql-tools18/bin/sqlcmd",
+             "-S", "localhost", "-U", "sa", "-P", "${SA_PASSWORD}",
+             "-Q", "SELECT 1", "-b", "-C"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 30s
+    restart: unless-stopped
+
+  # ── Инициализация базы (запускается один раз) ────────────────────────
+  db-init:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: musicprod-init
+    env_file: .env
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+    volumes:
+      - ./init.sql:/init.sql:ro
+    command: >
+      /bin/bash -c "
+        echo '>>> Инициализация базы данных...' &&
+        /opt/mssql-tools18/bin/sqlcmd
+          -S sqlserver -U sa -P '$SA_PASSWORD'
+          -i /init.sql -C &&
+        echo '>>> База данных готова!'
+      "
+    restart: "no"
+

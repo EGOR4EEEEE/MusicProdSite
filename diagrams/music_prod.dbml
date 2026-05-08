@@ -1,0 +1,109 @@
+Project music_prod {
+  database_type: 'PostgreSQL'
+  Note: '''
+    # Music Prod — Студия звукозаписи
+    База данных системы бронирования студии.
+    Включает: пользователи, музыканты, администраторы,
+    звукорежиссёры, тарифы, заявки, расписание, оборудование, уведомления.
+  '''
+}
+
+Table users as U {
+  id          integer     [pk, increment, note: 'ID пользователя']
+  name        varchar(100) [not null, note: 'Имя']
+  email       varchar(150) [unique, not null, note: 'Email']
+  phone       varchar(20)  [note: 'Телефон']
+  role        varchar(10)  [not null, note: 'musician | admin']
+  created_at  timestamp   [default: `now()`]
+}
+
+Table musicians {
+  id          integer     [pk, increment]
+  user_id     integer     [not null, ref: - users.id, note: 'FK → users']
+  genre       varchar(100) [note: 'Жанр исполнителя']
+}
+
+Table administrators {
+  id          integer     [pk, increment]
+  user_id     integer     [not null, ref: - users.id, note: 'FK → users']
+}
+
+Table engineers {
+  id              integer      [pk, increment]
+  name            varchar(100) [not null, note: 'Имя звукорежиссёра']
+  specialization  varchar(200) [note: 'Специализация (рок, поп, электроника…)']
+  experience      integer      [note: 'Стаж (лет)']
+  description     text         [note: 'Краткое описание']
+}
+
+Table tariffs {
+  id          integer       [pk, increment]
+  name        varchar(100)  [not null, note: 'Название тарифа']
+  price       decimal(10,2) [not null, note: 'Цена (руб./час или руб./трек)']
+  unit        varchar(20)   [note: 'hour | track']
+  description text          [note: 'Что входит в стоимость']
+}
+
+Table bookings {
+  id          integer     [pk, increment]
+  musician_id integer     [not null, ref: > musicians.id, note: 'FK → musicians']
+  engineer_id integer     [not null, ref: > engineers.id, note: 'FK → engineers']
+  tariff_id   integer     [not null, ref: > tariffs.id,   note: 'FK → tariffs']
+  booked_at   datetime    [not null, note: 'Дата и время сессии']
+  status      varchar(20) [not null, default: 'new', note: 'new | confirmed | cancelled | rescheduled']
+  comment     text        [note: 'Пожелания клиента']
+  created_at  timestamp   [default: `now()`]
+}
+
+Table schedules {
+  id          integer     [pk, increment]
+  engineer_id integer     [not null, ref: > engineers.id, note: 'FK → engineers']
+  booking_id  integer     [ref: > bookings.id, note: 'FK → bookings (NULL = свободный слот)']
+  start_dt    datetime    [not null, note: 'Начало слота']
+  end_dt      datetime    [not null, note: 'Конец слота']
+  status      varchar(10) [not null, default: 'free', note: 'free | booked']
+}
+
+Table notifications {
+  id          integer     [pk, increment]
+  booking_id  integer     [not null, ref: > bookings.id, note: 'FK → bookings']
+  type        varchar(10) [not null, note: 'email | sms']
+  content     text        [note: 'Текст уведомления']
+  sent_at     timestamp   [note: 'Время отправки']
+}
+
+Table equipment {
+  id      integer      [pk, increment]
+  name    varchar(100) [not null, note: 'Название (например: Neumann TLM 103)']
+  model   varchar(100) [note: 'Модель']
+  type    varchar(50)  [note: 'microphone | interface | monitor | daw | headphones']
+}
+
+Table engineer_equipment {
+  engineer_id   integer [not null, ref: > engineers.id,  note: 'FK → engineers']
+  equipment_id  integer [not null, ref: > equipment.id,  note: 'FK → equipment']
+
+  indexes {
+    (engineer_id, equipment_id) [pk]
+  }
+}
+
+// Группировка по разделам
+TableGroup Пользователи {
+  users
+  musicians
+  administrators
+}
+
+TableGroup Студия {
+  engineers
+  equipment
+  engineer_equipment
+  tariffs
+}
+
+TableGroup Бронирование {
+  bookings
+  schedules
+  notifications
+}

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Анализ ресурсов разработки — Music Prod</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f5f5f5;
+      padding: 32px;
+      color: #1a1a1a;
+    }
+
+    /* ── Заголовок раздела ── */
+    .section {
+      background: #fff;
+      border-radius: 12px;
+      margin-bottom: 28px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,.08);
+    }
+
+    .section-header {
+      background: linear-gradient(90deg, #f4a430 0%, #f7c068 100%);
+      padding: 14px 22px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.2px;
+    }
+
+    /* ── Таблица ── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    thead tr {
+      background: #fafafa;
+      border-bottom: 2px solid #ececec;
+    }
+
+    thead th {
+      padding: 9px 14px;
+      text-align: left;
+      font-weight: 600;
+      color: #555;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      white-space: nowrap;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    tbody tr:last-child { border-bottom: none; }
+
+    tbody tr:nth-child(even) { background: #fdfaf6; }
+
+    tbody td {
+      padding: 9px 14px;
+      vertical-align: top;
+      line-height: 1.5;
+      color: #333;
+    }
+
+    tbody td:first-child {
+      font-weight: 600;
+      color: #1a1a1a;
+      white-space: nowrap;
+    }
+
+    /* ── Бейджи ── */
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 10px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .b-green   { background: #e6f7ee; color: #1b7a3e; }
+    .b-blue    { background: #e8f0fe; color: #1a56c4; }
+    .b-orange  { background: #fff3e0; color: #b85c00; }
+    .b-red     { background: #fdecea; color: #c0392b; }
+    .b-gray    { background: #f0f0f0; color: #555; }
+    .b-purple  { background: #f3e8fe; color: #6d28d9; }
+
+    /* ── Двухколоночная раскладка ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-bottom: 28px;
+    }
+    .two-col .section { margin-bottom: 0; }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════
+       3.1 Технологический стек
+  ═══════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">3.1 Технологический стек — Music Prod Studio Booking</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Слой</th>
+          <th>Технология</th>
+          <th>БД</th>
+          <th>Инфраструктура</th>
+          <th>Тип деплоя</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Frontend</td>
+          <td>React, TypeScript, Tailwind CSS</td>
+          <td>—</td>
+          <td>Vercel / Nginx</td>
+          <td><span class="badge b-blue">SPA</span></td>
+        </tr>
+        <tr>
+          <td>Backend</td>
+          <td>Node.js, Express / NestJS</td>
+          <td>PostgreSQL</td>
+          <td>VPS / Docker</td>
+          <td><span class="badge b-green">REST API</span></td>
+        </tr>
+        <tr>
+          <td>Аутентификация</td>
+          <td>JWT + Refresh Token</td>
+          <td>Redis (сессии)</td>
+          <td>Cloudflare</td>
+          <td><span class="badge b-orange">Stateless</span></td>
+        </tr>
+        <tr>
+          <td>Уведомления</td>
+          <td>Nodemailer, Twilio SMS</td>
+          <td>—</td>
+          <td>SMTP / Twilio Cloud</td>
+          <td><span class="badge b-purple">Event-driven</span></td>
+        </tr>
+        <tr>
+          <td>Файловое хранилище</td>
+          <td>AWS S3 / MinIO</td>
+          <td>—</td>
+          <td>S3-compatible</td>
+          <td><span class="badge b-blue">Cloud Storage</span></td>
+        </tr>
+        <tr>
+          <td>Мобильная версия</td>
+          <td>PWA (Progressive Web App)</td>
+          <td>—</td>
+          <td>Same deploy</td>
+          <td><span class="badge b-gray">PWA</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       3.2 + 3.3 в две колонки
+  ═══════════════════════════════════════════ -->
+  <div class="two-col">
+
+    <!-- 3.2 Производительность -->
+    <div class="section">
+      <div class="section-header">3.2 Анализ производительности и масштабируемости</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Компонент</th>
+            <th>Текущая оценка</th>
+            <th>Bottleneck</th>
+            <th>Целевой показатель</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>API (booking)</td>
+            <td><span class="badge b-green">Высокая</span></td>
+            <td>Join-запросы БД</td>
+            <td>P95 &lt; 150 мс</td>
+          </tr>
+          <tr>
+            <td>Расписание</td>
+            <td><span class="badge b-orange">Средняя</span></td>
+            <td>Конфликты слотов</td>
+            <td>P95 &lt; 200 мс</td>
+          </tr>
+          <tr>
+            <td>Уведомления</td>
+            <td><span class="badge b-green">Высокая</span></td>
+            <td>Rate-limit SMS</td>
+            <td>Доставка &lt; 30 с</td>
+          </tr>
+          <tr>
+            <td>Frontend (FCP)</td>
+            <td><span class="badge b-green">Высокая</span></td>
+            <td>Bundle size</td>
+            <td>FCP &lt; 1.2 с</td>
+          </tr>
+          <tr>
+            <td>Масштабирование</td>
+            <td><span class="badge b-blue">Горизонтальное</span></td>
+            <td>Stateless API</td>
+            <td>До 500 конкурентных</td>
+          </tr>
+          <tr>
+            <td>Кэширование</td>
+            <td><span class="badge b-orange">Частичное</span></td>
+            <td>Тарифы, расписание</td>
+            <td>Redis TTL 60 с</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 3.3 DevOps -->
+    <div class="section">
+      <div class="section-header">3.3 Анализ DevOps-практик</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Практика</th>
+            <th>CI/CD</th>
+            <th>Monitoring</th>
+            <th>DevOps-зрелость</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Контейнеризация</td>
+            <td>Docker Compose</td>
+            <td>Healthcheck</td>
+            <td><span class="badge b-green">Высокая</span></td>
+          </tr>
+          <tr>
+            <td>CI-пайплайн</td>
+            <td>GitHub Actions</td>
+            <td>Build logs</td>
+            <td><span class="badge b-green">Высокая</span></td>
+          </tr>
+          <tr>
+            <td>CD / Деплой</td>
+            <td>Auto-deploy on merge</td>
+            <td>Vercel Analytics</td>
+            <td><span class="badge b-blue">SOC 2 ready</span></td>
+          </tr>
+          <tr>
+            <td>Тестирование</td>
+            <td>Jest + Supertest</td>
+            <td>Coverage report</td>
+            <td><span class="badge b-orange">Средняя</span></td>
+          </tr>
+          <tr>
+            <td>Логирование</td>
+            <td>Winston + Morgan</td>
+            <td>Datadog / ELK</td>
+            <td><span class="badge b-green">Высокая</span></td>
+          </tr>
+          <tr>
+            <td>Безопасность</td>
+            <td>Dependabot, SAST</td>
+            <td>Helmet, rate-limit</td>
+            <td><span class="badge b-green">Высокая</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       3.4 Команда и организационная структура
+  ═══════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">3.4 Анализ команды и организационной структуры</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Роль</th>
+          <th>Кол-во</th>
+          <th>Квалификация и ответственность</th>
+          <th>Методология</th>
+          <th>Recruiting / найм</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Full-stack разработчик</td>
+          <td>1–2</td>
+          <td>React + Node.js, проектирование API и БД</td>
+          <td>Agile / Solo-Kanban</td>
+          <td>Фриланс или in-house Junior–Middle</td>
+        </tr>
+        <tr>
+          <td>UI/UX дизайнер</td>
+          <td>1</td>
+          <td>Figma-прототипы, дизайн-система, адаптив</td>
+          <td>Design Sprints</td>
+          <td>Фриланс, портфолио-отбор</td>
+        </tr>
+        <tr>
+          <td>QA-инженер</td>
+          <td>1 (part-time)</td>
+          <td>Ручное + автотестирование booking-flow</td>
+          <td>Test-driven QA</td>
+          <td>Удалённо, part-time contract</td>
+        </tr>
+        <tr>
+          <td>DevOps / Инфра</td>
+          <td>0.5 (shared)</td>
+          <td>Docker, CI/CD, VPS-администрирование</td>
+          <td>GitOps</td>
+          <td>Shared с другим проектом</td>
+        </tr>
+        <tr>
+          <td>Менеджер проекта</td>
+          <td>1</td>
+          <td>Координация, приоритеты бэклога, клиент</td>
+          <td>Scrum-lite (2-нед. спринты)</td>
+          <td>Основатель / владелец студии</td>
+        </tr>
+        <tr>
+          <td>Контент / SMM</td>
+          <td>1 (part-time)</td>
+          <td>Описание тарифов, фото оборудования</td>
+          <td>Editorial calendar</td>
+          <td>Внешний контрактор</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</body>
+</html>

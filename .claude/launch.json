@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dotnet dev server",
+      "runtimeExecutable": "dotnet",
+      "runtimeArgs": ["run", "--project", "D:\\Music Prod update\\api\\MusicProdApi.csproj", "--urls", "http://localhost:3001"],
+      "port": 3001
+    }
+  ]
+}

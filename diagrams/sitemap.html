@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Site Map — Music Prod Studio</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Inter, 'Segoe UI', Arial, sans-serif; background: #f0f0f0; padding: 40px 32px; }
+
+    h1 { font-size: 13px; font-weight: 700; color: #333; margin-bottom: 6px; max-width: 220px; line-height: 1.4; }
+    .subtitle { font-size: 10px; color: #888; margin-bottom: 28px; max-width: 220px; line-height: 1.5; }
+
+    /* ── Дерево ── */
+    ul { list-style: none; padding-left: 0; }
+    ul ul { padding-left: 16px; position: relative; }
+    ul ul::before {
+      content: '';
+      position: absolute;
+      left: 6px; top: 0; bottom: 8px;
+      width: 1px;
+      background: #ccc;
+    }
+    li { position: relative; margin: 2px 0; }
+    ul ul > li::before {
+      content: '';
+      position: absolute;
+      left: -10px; top: 50%;
+      width: 10px; height: 1px;
+      background: #ccc;
+    }
+
+    .node {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 500;
+      color: #222;
+      background: #fff;
+      border: 1px solid #ddd;
+      white-space: nowrap;
+      cursor: default;
+    }
+
+    /* уровни цветов */
+    .lvl0 .node { background: #2B3A4A; color: #fff; border-color: #2B3A4A; font-size: 12px; font-weight: 700; }
+    .lvl1 > .node { background: #4A90D9; color: #fff; border-color: #3a7ec8; font-weight: 600; }
+    .lvl2 > .node { background: #fff; color: #333; border-color: #bbb; }
+    .lvl3 > .node { background: #f9f9f9; color: #555; border-color: #ddd; font-size: 10px; }
+
+    .dash { color: #aaa; margin-right: 5px; }
+
+    .tree-wrap { display: flex; gap: 60px; align-items: flex-start; flex-wrap: wrap; }
+    .col { min-width: 200px; }
+    .col-title {
+      font-size: 10px; font-weight: 700; color: #888;
+      text-transform: uppercase; letter-spacing: 0.6px;
+      margin-bottom: 10px; padding-left: 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>SkillProgress — информационная система<br>управления обучением</h1>
+  <p class="subtitle">Music Prod Studio — карта сайта (Site Map)<br>Система бронирования студии звукозаписи</p>
+
+  <div class="tree-wrap">
+
+    <!-- Колонка 1 -->
+    <div class="col">
+      <div class="col-title">Гость / Авторизация</div>
+      <ul>
+        <li class="lvl1"><span class="node">— Авторизация</span>
+          <ul>
+            <li class="lvl2"><span class="node">Вход в систему</span></li>
+            <li class="lvl2"><span class="node">Регистрация</span></li>
+            <li class="lvl2"><span class="node">Восстановление пароля</span></li>
+          </ul>
+        </li>
+      </ul>
+
+      <br/>
+
+      <div class="col-title">Музыкант (Dashboard)</div>
+      <ul>
+        <li class="lvl1"><span class="node">— Главная (Dashboard)</span>
+          <ul>
+            <li class="lvl2"><span class="node">Активные бронирования</span></li>
+            <li class="lvl2"><span class="node">Последние уведомления</span></li>
+            <li class="lvl2"><span class="node">Быстрое бронирование</span></li>
+          </ul>
+        </li>
+      </ul>
+
+      <br/>
+
+      <div class="col-title">Звукорежиссёры</div>
+      <ul>
+        <li class="lvl1"><span class="node">— Звукорежиссёры</span>
+          <ul>
+            <li class="lvl2"><span class="node">Каталог режиссёров</span>
+              <ul>
+                <li class="lvl3"><span class="node">Фильтр по жанру</span></li>
+                <li class="lvl3"><span class="node">Фильтр по стажу</span></li>
+              </ul>
+            </li>
+            <li class="lvl2"><span class="node">Профиль режиссёра</span>
+              <ul>
+                <li class="lvl3"><span class="node">Портфолио / описание</span></li>
+                <li class="lvl3"><span class="node">Оборудование</span></li>
+                <li class="lvl3"><span class="node">Расписание (слоты)</span></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Колонка 2 -->
+    <div class="col">
+      <div class="col-title">Бронирование</div>
+      <ul>
+        <li class="lvl1"><span class="node">— Бронирование</span>
+          <ul>
+            <li class="lvl2"><span class="node">Новая заявка</span>
+              <ul>
+                <li class="lvl3"><span class="node">Выбор режиссёра</span></li>
+                <li class="lvl3"><span class="node">Выбор тарифа</span></li>
+                <li class="lvl3"><span class="node">Выбор даты / слота</span></li>
+                <li class="lvl3"><span class="node">Подтверждение</span></li>
+              </ul>
+            </li>
+            <li class="lvl2"><span class="node">Мои бронирования</span>
+              <ul>
+                <li class="lvl3"><span class="node">Активные</span></li>
+                <li class="lvl3"><span class="node">Завершённые</span></li>
+                <li class="lvl3"><span class="node">Отменённые</span></li>
+              </ul>
+            </li>
+            <li class="lvl2"><span class="node">Детали заявки</span>
+              <ul>
+                <li class="lvl3"><span class="node">Перенос / отмена</span></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <br/>
+
+      <div class="col-title">Тарифы</div>
+      <ul>
+        <li class="lvl1"><span class="node">— Тарифы</span>
+          <ul>
+            <li class="lvl2"><span class="node">Список тарифов</span></li>
+            <li class="lvl2"><span class="node">Детали тарифа</span></li>
+          </ul>
+        </li>
+      </ul>
+
+      <br/>
+
+      <div class="col-title">Расписание</div>
+      <ul>
+        <li class="lvl1"><span class="node">— Расписание</span>
+          <ul>
+            <li class="lvl2"><span class="node">Общий календарь</span></li>
+            <li class="lvl2"><span class="node">Мои слоты</span></li>
+          </ul>
+        </li>
+      </ul>
+
+      <br/>
+
+      <div class="col-title">Уведомления</div>
+      <ul>
+        <li class="lvl1"><span class="node">— Уведомления</span>
+          <ul>
+            <li class="lvl2"><span class="node">Email-уведомления</span></li>
+            <li class="lvl2"><span class="node">SMS-уведомления</span></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Колонка 3 -->
+    <div class="col">
+      <div class="col-title">Администрирование</div>
+      <ul>
+        <li class="lvl1"><span class="node">— Администрирование</span>
+          <ul>
+            <li class="lvl2"><span class="node">Пользователи</span>
+              <ul>
+                <li class="lvl3"><span class="node">Список пользователей</span></li>
+                <li class="lvl3"><span class="node">Редактирование роли</span></li>
+              </ul>
+            </li>
+            <li class="lvl2"><span class="node">Заявки (все)</span>
+              <ul>
+                <li class="lvl3"><span class="node">Подтверждение</span></li>
+                <li class="lvl3"><span class="node">Отмена / перенос</span></li>
+              </ul>
+            </li>
+            <li class="lvl2"><span class="node">Тарифы (управление)</span>
+              <ul>
+                <li class="lvl3"><span class="node">Добавить тариф</span></li>
+                <li class="lvl3"><span class="node">Редактировать</span></li>
+              </ul>
+            </li>
+            <li class="lvl2"><span class="node">Оборудование</span>
+              <ul>
+                <li class="lvl3"><span class="node">Список / добавление</span></li>
+                <li class="lvl3"><span class="node">Привязка к режиссёру</span></li>
+              </ul>
+            </li>
+            <li class="lvl2"><span class="node">Звукорежиссёры</span>
+              <ul>
+                <li class="lvl3"><span class="node">Добавить / редактировать</span></li>
+                <li class="lvl3"><span class="node">Расписание</span></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <br/>
+
+      <div class="col-title">Профиль</div>
+      <ul>
+        <li class="lvl1"><span class="node">— Профиль пользователя</span>
+          <ul>
+            <li class="lvl2"><span class="node">Личные данные</span></li>
+            <li class="lvl2"><span class="node">Смена пароля</span></li>
+            <li class="lvl2"><span class="node">Настройки уведомлений</span></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</body>
+</html>
